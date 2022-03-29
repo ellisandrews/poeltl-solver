@@ -5,9 +5,8 @@ name = "pypi"
 
 [packages]
 requests = "*"
-alembic = "*"
-psycopg2-binary = "*"
 sqlalchemy = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
