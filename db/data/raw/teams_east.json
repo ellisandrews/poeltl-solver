@@ -1,0 +1,514 @@
+[
+    {
+        "id": 1,
+        "name": "Atlanta Hawks",
+        "nickname": "Hawks",
+        "code": "ATL",
+        "city": "Atlanta",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/e/ee/Hawks_2016.png",
+        "allStar": false,
+        "nbaFranchise": true,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "Southeast"
+            },
+            "vegas": {
+                "conference": "East",
+                "division": "Southeast"
+            },
+            "utah": {
+                "conference": "East",
+                "division": "Southeast"
+            },
+            "sacramento": {
+                "conference": "East",
+                "division": "Southeast"
+            }
+        }
+    },
+    {
+        "id": 2,
+        "name": "Boston Celtics",
+        "nickname": "Celtics",
+        "code": "BOS",
+        "city": "Boston",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/6/65/Celtics_de_Boston_logo.svg/1024px-Celtics_de_Boston_logo.svg.png",
+        "allStar": false,
+        "nbaFranchise": true,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "Atlantic"
+            },
+            "vegas": {
+                "conference": "East",
+                "division": "Atlantic"
+            },
+            "utah": {
+                "conference": "East",
+                "division": "Atlantic"
+            },
+            "sacramento": {
+                "conference": "East",
+                "division": "Atlantic"
+            }
+        }
+    },
+    {
+        "id": 4,
+        "name": "Brooklyn Nets",
+        "nickname": "Nets",
+        "code": "BKN",
+        "city": "Brooklyn",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Brooklyn_Nets_newlogo.svg/130px-Brooklyn_Nets_newlogo.svg.png",
+        "allStar": false,
+        "nbaFranchise": true,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "Atlantic"
+            },
+            "vegas": {
+                "conference": "East",
+                "division": "Atlantic"
+            },
+            "utah": {
+                "conference": "East",
+                "division": "Atlantic"
+            },
+            "sacramento": {
+                "conference": "East",
+                "division": "Atlantic"
+            }
+        }
+    },
+    {
+        "id": 5,
+        "name": "Charlotte Hornets",
+        "nickname": "Hornets",
+        "code": "CHA",
+        "city": "Charlotte",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/f/f3/Hornets_de_Charlotte_logo.svg/1200px-Hornets_de_Charlotte_logo.svg.png",
+        "allStar": false,
+        "nbaFranchise": true,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "Southeast"
+            },
+            "vegas": {
+                "conference": "East",
+                "division": "Southeast"
+            },
+            "utah": {
+                "conference": "East",
+                "division": "Southeast"
+            },
+            "sacramento": {
+                "conference": "East",
+                "division": "Southeast"
+            }
+        }
+    },
+    {
+        "id": 6,
+        "name": "Chicago Bulls",
+        "nickname": "Bulls",
+        "code": "CHI",
+        "city": "Chicago",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/d/d1/Bulls_de_Chicago_logo.svg/1200px-Bulls_de_Chicago_logo.svg.png",
+        "allStar": false,
+        "nbaFranchise": true,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "Central"
+            },
+            "vegas": {
+                "conference": "East",
+                "division": "Central"
+            },
+            "utah": {
+                "conference": "East",
+                "division": "Central"
+            },
+            "sacramento": {
+                "conference": "East",
+                "division": "Central"
+            }
+        }
+    },
+    {
+        "id": 7,
+        "name": "Cleveland Cavaliers",
+        "nickname": "Cavaliers",
+        "code": "CLE",
+        "city": "Cleveland",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/0/06/Cavs_de_Cleveland_logo_2017.png/150px-Cavs_de_Cleveland_logo_2017.png",
+        "allStar": false,
+        "nbaFranchise": true,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "Central"
+            },
+            "vegas": {
+                "conference": "East",
+                "division": "Central"
+            },
+            "utah": {
+                "conference": "East",
+                "division": "Central"
+            },
+            "sacramento": {
+                "conference": "East",
+                "division": "Central"
+            }
+        }
+    },
+    {
+        "id": 10,
+        "name": "Detroit Pistons",
+        "nickname": "Pistons",
+        "code": "DET",
+        "city": "Detroit",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Detroit_Pistons_primary_logo_2017.png/150px-Detroit_Pistons_primary_logo_2017.png",
+        "allStar": false,
+        "nbaFranchise": true,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "Central"
+            },
+            "vegas": {
+                "conference": "East",
+                "division": "Central"
+            },
+            "utah": {
+                "conference": "East",
+                "division": "Central"
+            },
+            "sacramento": {
+                "conference": "East",
+                "division": "Central"
+            }
+        }
+    },
+    {
+        "id": 15,
+        "name": "Indiana Pacers",
+        "nickname": "Pacers",
+        "code": "IND",
+        "city": "Indiana",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/c/cf/Pacers_de_l%27Indiana_logo.svg/1180px-Pacers_de_l%27Indiana_logo.svg.png",
+        "allStar": false,
+        "nbaFranchise": true,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "Central"
+            },
+            "vegas": {
+                "conference": "East",
+                "division": "Central"
+            },
+            "utah": {
+                "conference": "East",
+                "division": "Central"
+            },
+            "sacramento": {
+                "conference": "East",
+                "division": "Central"
+            }
+        }
+    },
+    {
+        "id": 20,
+        "name": "Miami Heat",
+        "nickname": "Heat",
+        "code": "MIA",
+        "city": "Miami",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/1/1c/Miami_Heat_-_Logo.svg/1200px-Miami_Heat_-_Logo.svg.png",
+        "allStar": false,
+        "nbaFranchise": true,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "Southeast"
+            },
+            "sacramento": {
+                "conference": "East",
+                "division": "Southeast"
+            },
+            "vegas": {
+                "conference": "East",
+                "division": "Southeast"
+            },
+            "utah": {
+                "conference": "East",
+                "division": "Southeast"
+            }
+        }
+    },
+    {
+        "id": 21,
+        "name": "Milwaukee Bucks",
+        "nickname": "Bucks",
+        "code": "MIL",
+        "city": "Milwaukee",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/3/34/Bucks2015.png",
+        "allStar": false,
+        "nbaFranchise": true,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "Central"
+            },
+            "vegas": {
+                "conference": "East",
+                "division": "Central"
+            },
+            "utah": {
+                "conference": "East",
+                "division": "Central"
+            },
+            "sacramento": {
+                "conference": "East",
+                "division": "Central"
+            }
+        }
+    },
+    {
+        "id": 24,
+        "name": "New York Knicks",
+        "nickname": "Knicks",
+        "code": "NYK",
+        "city": "New York",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/d/dc/NY_Knicks_Logo_2011.png",
+        "allStar": false,
+        "nbaFranchise": true,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "Atlantic"
+            },
+            "vegas": {
+                "conference": "East",
+                "division": "Atlantic"
+            },
+            "utah": {
+                "conference": "East",
+                "division": "Atlantic"
+            },
+            "sacramento": {
+                "conference": "East",
+                "division": "Atlantic"
+            }
+        }
+    },
+    {
+        "id": 26,
+        "name": "Orlando Magic",
+        "nickname": "Magic",
+        "code": "ORL",
+        "city": "Orlando",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/b/bd/Orlando_Magic_logo_2010.png",
+        "allStar": false,
+        "nbaFranchise": true,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "Southeast"
+            },
+            "vegas": {
+                "conference": "East",
+                "division": "Southeast"
+            },
+            "utah": {
+                "conference": "East",
+                "division": "Southeast"
+            },
+            "sacramento": {
+                "conference": "East",
+                "division": "Southeast"
+            }
+        }
+    },
+    {
+        "id": 27,
+        "name": "Philadelphia 76ers",
+        "nickname": "76ers",
+        "code": "PHI",
+        "city": "Philadelphia",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/4/48/76ers_2016.png",
+        "allStar": false,
+        "nbaFranchise": true,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "Atlantic"
+            },
+            "vegas": {
+                "conference": "East",
+                "division": "Atlantic"
+            },
+            "utah": {
+                "conference": "East",
+                "division": "Atlantic"
+            },
+            "sacramento": {
+                "conference": "East",
+                "division": "Atlantic"
+            }
+        }
+    },
+    {
+        "id": 34,
+        "name": "Team Team Durant",
+        "nickname": "Team Durant",
+        "code": "DRT",
+        "city": "Team",
+        "logo": null,
+        "allStar": true,
+        "nbaFranchise": false,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "East"
+            },
+            "vegas": {
+                "conference": "East",
+                "division": "East"
+            },
+            "utah": {
+                "conference": "East",
+                "division": "East"
+            },
+            "sacramento": {
+                "conference": "East",
+                "division": "East"
+            }
+        }
+    },
+    {
+        "id": 36,
+        "name": "Away Team Wilbon",
+        "nickname": "Team Wilbon",
+        "code": "WLB",
+        "city": "Away",
+        "logo": null,
+        "allStar": true,
+        "nbaFranchise": false,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "East"
+            }
+        }
+    },
+    {
+        "id": 37,
+        "name": "Home Team Stephen A",
+        "nickname": "Team Stephen A",
+        "code": "SAS",
+        "city": "Home",
+        "logo": null,
+        "allStar": true,
+        "nbaFranchise": true,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "East"
+            }
+        }
+    },
+    {
+        "id": 38,
+        "name": "Toronto Raptors",
+        "nickname": "Raptors",
+        "code": "TOR",
+        "city": "Toronto",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/8/89/Raptors2015.png",
+        "allStar": false,
+        "nbaFranchise": true,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "Atlantic"
+            },
+            "vegas": {
+                "conference": "East",
+                "division": "Atlantic"
+            },
+            "utah": {
+                "conference": "East",
+                "division": "Atlantic"
+            },
+            "sacramento": {
+                "conference": "East",
+                "division": "Atlantic"
+            }
+        }
+    },
+    {
+        "id": 39,
+        "name": "USA USA",
+        "nickname": "USA",
+        "code": "USA",
+        "city": "USA",
+        "logo": null,
+        "allStar": true,
+        "nbaFranchise": false,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "East"
+            }
+        }
+    },
+    {
+        "id": 41,
+        "name": "Washington Wizards",
+        "nickname": "Wizards",
+        "code": "WAS",
+        "city": "Washington",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/archive/d/d6/20161212034849%21Wizards2015.png",
+        "allStar": false,
+        "nbaFranchise": true,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "Southeast"
+            },
+            "vegas": {
+                "conference": "East",
+                "division": "Southeast"
+            },
+            "utah": {
+                "conference": "East",
+                "division": "Southeast"
+            },
+            "sacramento": {
+                "conference": "East",
+                "division": "Southeast"
+            }
+        }
+    },
+    {
+        "id": 42,
+        "name": "World World",
+        "nickname": "World",
+        "code": "WLD",
+        "city": "World",
+        "logo": null,
+        "allStar": true,
+        "nbaFranchise": false,
+        "leagues": {
+            "standard": {
+                "conference": "East",
+                "division": "East"
+            }
+        }
+    }
+]
