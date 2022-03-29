@@ -8,9 +8,13 @@ def get_rapidapi_key():
     return rapidapi_key
 
 
-BASE_URL = 'https://api-nba-v1.p.rapidapi.com'
+API_BASE_URL = 'https://api-nba-v1.p.rapidapi.com'
 
-HEADERS = {
+API_HEADERS = {
 	'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com',
 	'X-RapidAPI-Key': get_rapidapi_key()
 }
+
+CONFERENCES = ('East', 'West')
+
+RAW_DATA_DIRECTORY = 'db/raw_data'

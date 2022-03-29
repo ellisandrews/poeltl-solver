@@ -5,7 +5,7 @@ Solver for the Poeltl NBA player guessing game
 
 ### Project Setup
 
-I am using `pipenv` for dependency and environment management.
+This projects uses `pipenv` for dependency and environment management.
 
 #### Helpful commands
 
@@ -26,25 +26,20 @@ exit
 
 ### Database
 
-Using alembic to version the db.
+#### Fetch Data
+Data is pulled from an NBA API. To extract the relevant data:
 
-I manually ran `CREATE DATABASE poeltl;` as alembic seems to assume that db already exists.
-Might be able to run this in `alembic/env.py` though.
-
-#### Helpful commands
-
-Generate a new revision:
+1. Set API key as an environment variable
 ```shell
-alembic revision -m "create conferences table"
+export RAPIDAPI_KEY="<your_api_key>"
 ```
-
-Run migrations
-```shell
-alembic upgrade head
-```
+2. Run `python db/fetch_teams.py` to pull data from the API and store it in `db/raw_data/`
 
 
-### Data Extraction Steps:
+#### Load Data
 
-1. Get teams by conference (db/extract/extract_teams.py)
-2. Get players by team, using teams from above
+This project uses SQLAlchemy ORM for database management.
+
+1. Manually run `CREATE DATABASE poeltl;` as sqlalchemy assumes that db already exists.
+
+2. Run `python db/create_database.py` to create the db tables and insert data.

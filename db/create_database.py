@@ -4,13 +4,8 @@ import json
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 
+from common import RAW_DATA_DIRECTORY
 from models import Base, Conference, Division, Player, Team
-
-
-EXCLUDED_TEAM_CODES = set([
-    ''
-])
-
 
 
 if __name__ == '__main__':
@@ -30,7 +25,7 @@ if __name__ == '__main__':
         conference = Conference(name=conference_name)
         session.add(conference)
 
-        with open(f"db/data/raw/teams_{conference_name.lower()}.json", 'r') as raw_teams_file:
+        with open(f"{RAW_DATA_DIRECTORY}/teams_{conference_name.lower()}.json", 'r') as raw_teams_file:
             raw_teams = json.load(raw_teams_file)
 
         divisions_by_name = {}
