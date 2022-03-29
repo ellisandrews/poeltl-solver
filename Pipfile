@@ -7,6 +7,7 @@ name = "pypi"
 requests = "*"
 alembic = "*"
 psycopg2-binary = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 

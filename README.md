@@ -42,3 +42,9 @@ Run migrations
 ```shell
 alembic upgrade head
 ```
+
+
+### Data Extraction Steps:
+
+1. Get teams by conference (db/extract/extract_teams.py)
+2. Get players by team, using teams from above
