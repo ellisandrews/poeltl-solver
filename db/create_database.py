@@ -81,5 +81,9 @@ if __name__ == '__main__':
             )
             session.add(player)
 
+            # Note: Not enforcing uniqueness on player as there is some bad data in the API.
+            # Example of this is Justin Anderson existing 3 times in the raw data on different teams:
+            # SELECT * FROM players p JOIN teams t ON p.team_id = t.id WHERE first_name = 'Justin' and last_name = 'Anderson';
+
     session.commit()
     session.close()
