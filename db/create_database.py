@@ -1,11 +1,19 @@
-from curses import echo, raw
 import json
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 
-from common import RAW_DATA_DIRECTORY
+from common import CONFERENCES, RAW_DATA_DIRECTORY, slugify
 from models import Base, Conference, Division, Player, Team
+
+
+def get_height_inches(raw_player):
+    try:
+        feet = int(raw_player['height']['feets'])
+        inches = int(raw_player['height']['inches'])
+        return feet * 12 + inches
+    except:
+        return None
 
 
 if __name__ == '__main__':
@@ -18,33 +26,30 @@ if __name__ == '__main__':
     # Create all tables
     Base.metadata.create_all(engine)
 
+    # Create a database session to which we'll add objects
     session = Session(engine)
 
-    for conference_name in ('East', 'West'):
+    # First, create conferences/divisions/teams from conference data.
+    for conference_name in CONFERENCES:
         
         conference = Conference(name=conference_name)
         session.add(conference)
 
-        with open(f"{RAW_DATA_DIRECTORY}/teams_{conference_name.lower()}.json", 'r') as raw_teams_file:
+        with open(f"{RAW_DATA_DIRECTORY}/teams_{slugify(conference_name)}.json", 'r') as raw_teams_file:
             raw_teams = json.load(raw_teams_file)
 
-        divisions_by_name = {}
+        # TODO: DELETE THIS LINE AS IT'S NOW UPSTREAM IN DATA FETCHING
+        raw_teams = [raw_team for raw_team in raw_teams if (not raw_team['allStar'] and raw_team['nbaFranchise'])]
 
         for raw_team in raw_teams:
 
-            # Only want NBA teams
-            if raw_team['allStar'] or not raw_team['nbaFranchise']:
-                continue
-
             division_name = raw_team['leagues']['standard']['division']
             
-            if division_name not in divisions_by_name:
+            division = session.query(Division).filter_by(name=division_name).one_or_none()
+            if not division:
                 division = Division(name=division_name, conference=conference)
                 session.add(division)
-                divisions_by_name[division_name] = division
-            else:
-                division = divisions_by_name[division_name]
-
+            
             team = Team(
                 id=raw_team['id'],
                 city=raw_team['city'],
@@ -53,6 +58,28 @@ if __name__ == '__main__':
                 division=division
             )
             session.add(team)
+
+    # Next, create players from team player lists
+    for team in session.query(Team).all():
+        
+        # TODO: CHANGE THIS ONCE FILES HAVE IDs?
+        with open(f"db/raw_data/players_{slugify(team.city + ' ' + team.nickname)}.json", 'r') as raw_players_file:
+             raw_players = json.load(raw_players_file)           
+
+        # TODO: DELETE THIS LINE AS IT'S NOW UPSTREAM IN DATA FETCHING
+        raw_players = [raw_player for raw_player in raw_players if (raw_player['leagues'].get('standard') and raw_player['leagues']['standard']['active'])]
+
+        for raw_player in raw_players:
+            player = Player(
+                first_name=raw_player['firstname'],
+                last_name=raw_player['lastname'],
+                birth_date=raw_player['birth']['date'],
+                height_inches=get_height_inches(raw_player),
+                jersey_number=raw_player['leagues']['standard']['jersey'] or 0,  # Players with number 0 show up as null, so just going to overcorrect this
+                position=raw_player['leagues']['standard']['pos'],
+                team=team
+            )
+            session.add(player)
 
     session.commit()
     session.close()

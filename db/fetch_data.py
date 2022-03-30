@@ -34,9 +34,8 @@ if __name__ == '__main__':
     # NOTE: With my API key, I can only execute 10 requests/min
     sleep_secs = 10
 
-    all_teams = []
-
     # First, fetch team data per conference. Save teams in memory to be used in next round of API calls.
+    all_teams = []
     for conference in CONFERENCES:
 
         response_json = execute_api_get_request('teams', {'conference': conference})
@@ -60,7 +59,7 @@ if __name__ == '__main__':
         players = response_json['response']
 
         # Filter out some garbage players we dont' want at all
-        players = [player for player in players if (player['leauges'].get('standard') and player['leagues']['standard']['active'])]
+        players = [player for player in players if (player['leagues'].get('standard') and player['leagues']['standard']['active'])]
 
-        with open(f"{RAW_DATA_DIRECTORY}/players_{slugify(team['name'])}_{team['id']}.json", 'w') as json_file:
+        with open(f"{RAW_DATA_DIRECTORY}/players_{slugify(team['city'] + team['nickname'])}.json", 'w') as json_file:
             json.dump(players, json_file, indent=4)
