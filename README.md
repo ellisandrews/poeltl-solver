@@ -33,7 +33,7 @@ Data is pulled from an NBA API. To extract the relevant data:
 ```shell
 export RAPIDAPI_KEY="<your_api_key>"
 ```
-2. Run `python db/fetch_teams.py` to pull data from the API and store it in `db/raw_data/`
+2. Run `python db/fetch_data.py` to pull data from the API and store it in `db/raw_data/`
 
 
 #### Load Data
