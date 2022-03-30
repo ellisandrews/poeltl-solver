@@ -7,6 +7,16 @@ from .common import CONFERENCES, RAW_DATA_DIRECTORY, slugify
 from .db.models import Base, Conference, Division, Player, Team
 
 
+DIVISION_ABBREVIATIONS = {
+    'Atlantic': 'Atl.',
+    'Central': 'Cen.',
+    'Northwest': 'NW',
+    'Pacific': 'Pac.',
+    'Southeast': 'SE',
+    'Southwest': 'SW'
+}
+
+
 def get_height_inches(raw_player):
     try:
         feet = int(raw_player['height']['feets'])
@@ -47,7 +57,11 @@ if __name__ == '__main__':
             
             division = session.query(Division).filter_by(name=division_name).one_or_none()
             if not division:
-                division = Division(name=division_name, conference=conference)
+                division = Division(
+                    name=division_name,
+                    abbreviation=DIVISION_ABBREVIATIONS[division_name],
+                    conference=conference
+                )
                 session.add(division)
             
             team = Team(

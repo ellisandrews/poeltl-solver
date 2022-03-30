@@ -20,4 +20,4 @@ class Player(Base):
     team = relationship('Team', back_populates='players')
 
     def __repr__(self):
-        return f"{type(self).__name__}(id={self.id!r}, first_name={self.first_name!r}, last_name={self.last_name!r}, birth_date={self.birth_date!r}, height_inches={self.height_inches!r}, jersey_number={self.jersey_number!r}, position={self.position!r})"
+        return f"{type(self).__name__}(id={self.id!r}, first_name={self.first_name!r}, last_name={self.last_name!r}, birth_date={self.birth_date.strftime('%Y-%m-%d')!r}, height_inches={self.height_inches!r}, jersey_number={self.jersey_number!r}, position={self.position!r})"

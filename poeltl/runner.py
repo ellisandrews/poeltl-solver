@@ -1,24 +1,41 @@
-from sqlalchemy import create_engine, select
+from sqlalchemy import create_engine, func, select
 from sqlalchemy.orm import Session
 
-from db.models import Division, Player, Team
+from poeltl.db.models.conference import Conference
+
+from .db.models import Conference, Division, Player, Team
 
 
-engine = create_engine('postgresql://postgres@localhost/poeltl', echo=True)
-
-session = Session(engine)
+incorrect_team_codes = ['MIN']
+correct_conference_name = 'West'
+correct_division_abbreviation = 'NW'
+close_player_positions = ['C', 'F-C', 'F']
+high_player_height_inches = 83
+high_player_age = 26
+low_player_jersey_number = 32
 
 statement = (
     select(Player).
     join(Player.team).
     join(Team.division).
-    join(Division.conference)
+    join(Division.conference).
+    where(
+        Team.code.notin_(incorrect_team_codes),
+        Conference.name == correct_conference_name,
+        Division.abbreviation == correct_division_abbreviation,
+        Player.position.in_(close_player_positions),
+        Player.height_inches < high_player_height_inches,
+        func.date_part('YEAR', func.age(func.current_date(), Player.birth_date)) < 26,
+        Player.jersey_number > low_player_jersey_number
+    )
 )
 
-print(statement)
+engine = create_engine('postgresql://postgres@localhost/poeltl')
 
+with Session(engine) as session:
+    for row in session.execute(statement):
+        print(row)
 
-# Raw query
 """
 SELECT p.*
 FROM players p
@@ -33,7 +50,6 @@ WHERE t.code NOT IN ('MIN')
   AND date_part('year', AGE(CURRENT_DATE, p.birth_date)) < 26
   AND p.jersey_number > 32;
 """
-
 
 
 # from feedback import AttributeFeedback, AttributeStatus, GuessFeedback, NumericAttributeFeedback
