@@ -1,10 +1,10 @@
 import json
 
-from sqlalchemy import create_engine, select
+from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 
-from common import CONFERENCES, RAW_DATA_DIRECTORY, slugify
-from models import Base, Conference, Division, Player, Team
+from .common import CONFERENCES, RAW_DATA_DIRECTORY, slugify
+from .db.models import Base, Conference, Division, Player, Team
 
 
 def get_height_inches(raw_player):
@@ -63,7 +63,7 @@ if __name__ == '__main__':
     for team in session.query(Team).all():
         
         # TODO: CHANGE THIS ONCE FILES HAVE IDs?
-        with open(f"db/raw_data/players_{slugify(team.city + ' ' + team.nickname)}.json", 'r') as raw_players_file:
+        with open(f"{RAW_DATA_DIRECTORY}/players_{slugify(team.city + ' ' + team.nickname)}.json", 'r') as raw_players_file:
              raw_players = json.load(raw_players_file)           
 
         # TODO: DELETE THIS LINE AS IT'S NOW UPSTREAM IN DATA FETCHING

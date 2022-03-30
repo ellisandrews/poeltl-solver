@@ -33,7 +33,7 @@ Data is pulled from an NBA API. To extract the relevant data:
 ```shell
 export RAPIDAPI_KEY="<your_api_key>"
 ```
-2. Run `python db/fetch_data.py` to pull data from the API and store it in `db/raw_data/`
+2. Run `python -m poeltl.fetch_data` to pull data from the API and store it in `poeltl/db/raw_data/`
 
 
 #### Load Data
@@ -42,4 +42,4 @@ This project uses SQLAlchemy ORM for database management.
 
 1. Manually run `CREATE DATABASE poeltl;` as sqlalchemy assumes that db already exists.
 
-2. Run `python db/create_database.py` to create the db tables and insert data.
+2. Run `python -m poeltl.create_database` to create the db tables and insert data.
