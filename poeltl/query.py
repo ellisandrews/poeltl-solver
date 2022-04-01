@@ -95,7 +95,7 @@ query = build_query(
     VariableAttributeContext(incorrect_values=['Cen.']),  # Division.abbreviation
     VariableCloseAttributeContext(correct_value='G'),  # Player.position
     VariableCloseAttributeContext(incorrect_values=[IntegerGuess(77, Direction.HIGH)], close_values=[IntegerGuess(77, Direction.HIGH)]),  # Player.height_inches
-    VariableCloseAttributeContext(incorrect_values=[IntegerGuess(21, Direction.LOW)]),  # Player.birth_date 
+    VariableCloseAttributeContext(correct_value=29),  # Player.birth_date 
     VariableCloseAttributeContext(incorrect_values=[IntegerGuess(24, Direction.HIGH)])  # Player.jersey_number
 )
 
