@@ -1,15 +1,12 @@
-from sqlalchemy import create_engine, select
+from sqlalchemy import create_engine, func, select
 from sqlalchemy.orm import Session
 
-from .db.models import Division, Player, Team
+from .db.models import Conference, Division, Player, Team
 from .filters import (
-    conference_name_filter,
-    division_abbreviation_filter,
-    player_age_filter,
-    player_height_inches_filter,
-    player_jersey_number_filter,
-    player_position_filter,
-    team_code_filter
+    binary_column_filter,
+    close_integer_column_filter,
+    close_variable_column_filter,
+    variable_column_filter
 )
 from .guess.context import BinaryAttributeContext, VariableAttributeContext, VariableCloseAttributeContext
 
@@ -47,44 +44,59 @@ def build_query(
         .join(Team.division)
         .join(Division.conference)
         .where(
-            team_code_filter(
+            variable_column_filter(
+                Team.code,
                 team_code_context.correct_value,
                 team_code_context.incorrect_values
             ),
-            conference_name_filter(
+            binary_column_filter(
+                Conference.name,
                 conference_name_context.correct_value,
                 conference_name_context.incorrect_value
             ),
-            division_abbreviation_filter(
+            variable_column_filter(
+                Division.abbreviation,
                 division_abbreviation_context.correct_value,
                 division_abbreviation_context.incorrect_values
             ),
-            player_position_filter(
+            close_variable_column_filter(
+                Player.position,
                 player_position_context.correct_value,
                 player_position_context.incorrect_values,
-                player_position_context.close_values
+                ['G', 'G-F', 'F-G', 'F', 'F-C', 'C-F', 'C']  # TODO: Use context.close_values to make real possible_values
             ),
-            player_height_inches_filter(
+            close_integer_column_filter(
+                Player.height_inches,
                 player_height_context.correct_value,
                 player_height_context.incorrect_values,
-                player_height_context.close_values
+                list(range(0, 100))  # TODO: Use context.close_values to make real possible_values
             ),
-            player_age_filter(
+            close_integer_column_filter(
+                func.date_part('YEAR', func.age(func.current_date(), Player.birth_date)),
                 player_age_context.correct_value,
                 player_age_context.incorrect_values,
-                player_age_context.close_values
+                list(range(0, 100))  # TODO: Use context.close_values to make real possible_values
             ),
-            player_jersey_number_filter(
+            close_integer_column_filter(
+                Player.jersey_number,
                 player_jersey_number_context.correct_value,
                 player_jersey_number_context.incorrect_values,
-                player_jersey_number_context.close_values
+                list(range(0, 100))  # TODO: Use context.close_values to make real possible_values
             )
         )
     )
 
+# TODO: Delete this import used for test instantiation
+from .guess.guesses import IntegerGuess, Direction
 
 query = build_query(
-    # TODO
+    VariableAttributeContext(incorrect_values=['MIL']),  # Team.code
+    BinaryAttributeContext(correct_value='East'),  # Conference.name
+    VariableAttributeContext(incorrect_values=['Cen.']),  # Division.abbreviation
+    VariableCloseAttributeContext(correct_value='G'),  # Player.position
+    VariableCloseAttributeContext(incorrect_values=[IntegerGuess(77, Direction.HIGH)], close_values=[IntegerGuess(77, Direction.HIGH)]),  # Player.height_inches
+    VariableCloseAttributeContext(incorrect_values=[IntegerGuess(21, Direction.LOW)]),  # Player.birth_date 
+    VariableCloseAttributeContext(incorrect_values=[IntegerGuess(24, Direction.HIGH)])  # Player.jersey_number
 )
 
 engine = create_engine('postgresql://postgres@localhost/poeltl')
