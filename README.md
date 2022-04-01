@@ -26,20 +26,27 @@ exit
 
 ### Database
 
-#### Fetch Data
-Data is pulled from an NBA API. To extract the relevant data:
+`poeltl-solver` is backed by a postgres database with a `sqlalchemy` ORM on top of it.
+Here are the steps to set up locally.
 
-1. Set API key as an environment variable
+#### Initialize Database
+
+1. Start postgres.
+
+2. Connect to postgres and run `CREATE DATABASE poeltl;`
+
+3. Run `python -m poeltl.create_database` to create the db tables and insert data.
+
+#### Fetching Raw Data
+
+The NBA player data comes from a freemium NBA API. 
+Static data from that API is checked into this repo, but if you need to pull fresh data follow these steps:
+
+1. Obtain an API key from RapidAPI.
+
+2. Set your API key as an environment variable
 ```shell
 export RAPIDAPI_KEY="<your_api_key>"
 ```
-2. Run `python -m poeltl.fetch_data` to pull data from the API and store it in `poeltl/db/raw_data/`
 
-
-#### Load Data
-
-This project uses SQLAlchemy ORM for database management.
-
-1. Manually run `CREATE DATABASE poeltl;` as sqlalchemy assumes that db already exists.
-
-2. Run `python -m poeltl.create_database` to create the db tables and insert data.
+3. Run `python -m poeltl.fetch_data` to pull data from the API and store it in `poeltl/db/raw_data/`

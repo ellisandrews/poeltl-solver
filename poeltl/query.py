@@ -63,25 +63,25 @@ def build_query(
                 Player.position,
                 player_position_context.correct_value,
                 player_position_context.incorrect_values,
-                ['G', 'G-F', 'F-G', 'F', 'F-C', 'C-F', 'C']  # TODO: Use context.close_values to make real possible_values
+                None  # TODO: Use context.close_values to make real possible_values
             ),
             close_integer_column_filter(
                 Player.height_inches,
                 player_height_context.correct_value,
                 player_height_context.incorrect_values,
-                list(range(0, 100))  # TODO: Use context.close_values to make real possible_values
+                None  # TODO: Use context.close_values to make real possible_values
             ),
             close_integer_column_filter(
                 func.date_part('YEAR', func.age(func.current_date(), Player.birth_date)),
                 player_age_context.correct_value,
                 player_age_context.incorrect_values,
-                list(range(0, 100))  # TODO: Use context.close_values to make real possible_values
+                None  # TODO: Use context.close_values to make real possible_values
             ),
             close_integer_column_filter(
                 Player.jersey_number,
                 player_jersey_number_context.correct_value,
                 player_jersey_number_context.incorrect_values,
-                list(range(0, 100))  # TODO: Use context.close_values to make real possible_values
+                None  # TODO: Use context.close_values to make real possible_values
             )
         )
     )

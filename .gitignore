@@ -130,4 +130,6 @@ dmypy.json
 
 # Visual Studio Code
 .vscode/
-poeltl/db/raw_data/players_*
+
+# macOS stuff
+.DS_Store

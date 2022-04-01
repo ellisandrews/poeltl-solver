@@ -392,34 +392,6 @@
         }
     },
     {
-        "id": 35,
-        "name": "Team LeBron",
-        "nickname": "Team LeBron",
-        "code": "LBN",
-        "city": "Team",
-        "logo": null,
-        "allStar": true,
-        "nbaFranchise": false,
-        "leagues": {
-            "standard": {
-                "conference": "West",
-                "division": "West"
-            },
-            "vegas": {
-                "conference": "West",
-                "division": "West"
-            },
-            "utah": {
-                "conference": "West",
-                "division": "West"
-            },
-            "sacramento": {
-                "conference": "West",
-                "division": "West"
-            }
-        }
-    },
-    {
         "id": 40,
         "name": "Utah Jazz",
         "nickname": "Jazz",
@@ -434,62 +406,6 @@
                 "division": "Northwest"
             },
             "vegas": {
-                "conference": "West",
-                "division": "Northwest"
-            },
-            "utah": {
-                "conference": "West",
-                "division": "Northwest"
-            },
-            "sacramento": {
-                "conference": "West",
-                "division": "Northwest"
-            }
-        }
-    },
-    {
-        "id": 102,
-        "name": "Utah Blue",
-        "nickname": "Jazz",
-        "code": "UTB",
-        "city": "Utah",
-        "logo": null,
-        "allStar": false,
-        "nbaFranchise": false,
-        "leagues": {
-            "vegas": {
-                "conference": "West",
-                "division": "Northwest"
-            },
-            "standard": {
-                "conference": "West",
-                "division": "Northwest"
-            },
-            "utah": {
-                "conference": "West",
-                "division": "Northwest"
-            },
-            "sacramento": {
-                "conference": "West",
-                "division": "Northwest"
-            }
-        }
-    },
-    {
-        "id": 103,
-        "name": "Utah White",
-        "nickname": "Jazz",
-        "code": "UTW",
-        "city": "Utah",
-        "logo": null,
-        "allStar": false,
-        "nbaFranchise": false,
-        "leagues": {
-            "vegas": {
-                "conference": "West",
-                "division": "Northwest"
-            },
-            "standard": {
                 "conference": "West",
                 "division": "Northwest"
             },

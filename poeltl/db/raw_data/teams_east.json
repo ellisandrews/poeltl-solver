@@ -364,66 +364,6 @@
         }
     },
     {
-        "id": 34,
-        "name": "Team Team Durant",
-        "nickname": "Team Durant",
-        "code": "DRT",
-        "city": "Team",
-        "logo": null,
-        "allStar": true,
-        "nbaFranchise": false,
-        "leagues": {
-            "standard": {
-                "conference": "East",
-                "division": "East"
-            },
-            "vegas": {
-                "conference": "East",
-                "division": "East"
-            },
-            "utah": {
-                "conference": "East",
-                "division": "East"
-            },
-            "sacramento": {
-                "conference": "East",
-                "division": "East"
-            }
-        }
-    },
-    {
-        "id": 36,
-        "name": "Away Team Wilbon",
-        "nickname": "Team Wilbon",
-        "code": "WLB",
-        "city": "Away",
-        "logo": null,
-        "allStar": true,
-        "nbaFranchise": false,
-        "leagues": {
-            "standard": {
-                "conference": "East",
-                "division": "East"
-            }
-        }
-    },
-    {
-        "id": 37,
-        "name": "Home Team Stephen A",
-        "nickname": "Team Stephen A",
-        "code": "SAS",
-        "city": "Home",
-        "logo": null,
-        "allStar": true,
-        "nbaFranchise": true,
-        "leagues": {
-            "standard": {
-                "conference": "East",
-                "division": "East"
-            }
-        }
-    },
-    {
         "id": 38,
         "name": "Toronto Raptors",
         "nickname": "Raptors",
@@ -452,22 +392,6 @@
         }
     },
     {
-        "id": 39,
-        "name": "USA USA",
-        "nickname": "USA",
-        "code": "USA",
-        "city": "USA",
-        "logo": null,
-        "allStar": true,
-        "nbaFranchise": false,
-        "leagues": {
-            "standard": {
-                "conference": "East",
-                "division": "East"
-            }
-        }
-    },
-    {
         "id": 41,
         "name": "Washington Wizards",
         "nickname": "Wizards",
@@ -492,22 +416,6 @@
             "sacramento": {
                 "conference": "East",
                 "division": "Southeast"
-            }
-        }
-    },
-    {
-        "id": 42,
-        "name": "World World",
-        "nickname": "World",
-        "code": "WLD",
-        "city": "World",
-        "logo": null,
-        "allStar": true,
-        "nbaFranchise": false,
-        "leagues": {
-            "standard": {
-                "conference": "East",
-                "division": "East"
             }
         }
     }

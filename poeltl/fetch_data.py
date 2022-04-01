@@ -61,5 +61,5 @@ if __name__ == '__main__':
         # Filter out some garbage players we dont' want at all
         players = [player for player in players if (player['leagues'].get('standard') and player['leagues']['standard']['active'])]
 
-        with open(f"{RAW_DATA_DIRECTORY}/players_{slugify(team['city'] + team['nickname'])}.json", 'w') as json_file:
+        with open(f"{RAW_DATA_DIRECTORY}/players_{slugify(team['city'] + ' ' + team['nickname'])}.json", 'w') as json_file:
             json.dump(players, json_file, indent=4)
