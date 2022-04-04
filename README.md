@@ -24,6 +24,25 @@ Exit pipenv shell/virtualenv:
 exit
 ```
 
+### Selenium
+
+Selenium is used for web browser interactions. In order for Selenium to work, you have to download a driver from this list: [Drivers](https://selenium-python.readthedocs.io/installation.html#drivers)
+
+Download the Chrome driver and make sure it is on your `PATH` by putting it in `/usr/local/bin/`.
+
+```shell
+$ which chromedriver
+/usr/local/bin/chromedriver
+```
+
+If you get this error: `“chromedriver” cannot be opened because the developer cannot be verified.`
+
+You can tell macOS to trust the binary by running the following command:
+
+```shell
+xattr -d com.apple.quarantine /usr/local/bin/chromedriver
+```
+
 ### Database
 
 `poeltl-solver` is backed by a postgres database with a `sqlalchemy` ORM on top of it.

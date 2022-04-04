@@ -7,6 +7,7 @@ name = "pypi"
 requests = "*"
 sqlalchemy = "*"
 psycopg2-binary = "*"
+selenium = "*"
 
 [dev-packages]
 
