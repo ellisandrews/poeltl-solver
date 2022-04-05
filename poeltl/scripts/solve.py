@@ -9,49 +9,51 @@ from poeltl.guess.mapping import map_feedback_to_context
 from poeltl.guess.query_manager import QueryManager
 
 
-# Connect to the database
-engine = create_engine('postgresql://postgres@localhost/poeltl')
+if __name__ == '__main__':
 
-# Instantiate long-lived objects
-query_manager = QueryManager(engine)
-game_context = GameContext()
-guesser = Guesser()
+    # Connect to the database
+    engine = create_engine('postgresql://postgres@localhost/poeltl')
 
-# Launch a web browser and navigate to the game site
-guesser.navigate_to_poeltl_site()
+    # Instantiate long-lived objects
+    query_manager = QueryManager(engine)
+    game_context = GameContext()
+    guesser = Guesser()
 
-# Execute main game loop until the game is solved
-solved = False
-attempts = 0
+    # Launch a web browser and navigate to the game site
+    guesser.navigate_to_poeltl_site()
 
-while not solved:
+    # Execute main game loop until the game is solved
+    solved = False
+    attempts = 0
 
-    # Increment the attempts counter
-    attempts += 1
+    while not solved:
 
-    print(f"Beginning attempt {attempts}")
+        # Increment the attempts counter
+        attempts += 1
 
-    # Query the database for a possible player to guess based on known context
-    query = query_manager.build_query(game_context)
-    players = query_manager.execute_query(query)
-    
-    # Try players one by one until a successful guess is submitted
-    guess_succeeded = False
-    while not guess_succeeded and players:
-        player = players.pop(0)
-        print(f"Trying player: {player}")
-        guess_succeeded = guesser.execute_guess(player.full_name)
+        print(f"Beginning attempt {attempts}")
 
-    if not guess_succeeded:
-        raise Exception('Failed to submit a valid guess in the UI')
+        # Query the database for a possible player to guess based on known context
+        query = query_manager.build_query(game_context)
+        players = query_manager.execute_query(query)
+        
+        # Try players one by one until a successful guess is submitted
+        guess_succeeded = False
+        while not guess_succeeded and players:
+            player = players.pop(0)
+            print(f"Trying player: {player}")
+            guess_succeeded = guesser.execute_guess(player.full_name)
 
-    # Allow page to load for a sec and then scrape the feedback
-    sleep(1)
-    guess_feedback = guesser.get_most_recent_guess_feedback()
+        if not guess_succeeded:
+            raise Exception('Failed to submit a valid guess in the UI')
 
-    # Check to see if we've solved the puzzle, or update the context for the next guess based on the feedback
-    if guess_feedback.player_name_feedback.status is AttributeStatus.CORRECT:
-        solved = True
-        print(f"SOLVED in {attempts} attempts! Correct answer: {player.full_name}")
-    else:
-        game_context = map_feedback_to_context(guess_feedback, game_context)
+        # Allow page to load for a sec and then scrape the feedback
+        sleep(1)
+        guess_feedback = guesser.get_most_recent_guess_feedback()
+
+        # Check to see if we've solved the puzzle, or update the context for the next guess based on the feedback
+        if guess_feedback.player_name_feedback.status is AttributeStatus.CORRECT:
+            solved = True
+            print(f"SOLVED in {attempts} attempts! Correct answer: {player.full_name}")
+        else:
+            game_context = map_feedback_to_context(guess_feedback, game_context)

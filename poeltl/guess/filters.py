@@ -108,11 +108,11 @@ def _integer_values_filter(column: Column, close_values: list[IntegerAttributeVa
 
 
 def _get_min_and_or_max_integer_filter(column: Column, min_value: int, max_value: int):
-    if min_value and max_value:
+    if min_value is not None and max_value is not None:
         return and_(column > min_value, column < max_value)
-    elif min_value:
+    elif min_value is not None:
         return column > min_value
-    elif max_value:
+    elif max_value is not None:
         return column < max_value
     else:
         raise ValueError('Must specify at least one of [min_value, max_value]')

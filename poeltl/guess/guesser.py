@@ -62,7 +62,7 @@ class Guesser:
             class_ = cell.get_attribute('class')
             if 'green' in class_:
                 attribute_status = AttributeStatus.CORRECT
-            elif 'yellow' in class_:
+            elif 'yellow' in class_ and column != 'team':  # Cannot query CLOSE teams
                 attribute_status = AttributeStatus.CLOSE
             else:
                 attribute_status = AttributeStatus.INCORRECT
