@@ -1,4 +1,3 @@
-from operator import attrgetter
 from time import sleep
 
 from sqlalchemy import create_engine
@@ -30,17 +29,23 @@ while not solved:
     # Increment the attempts counter
     attempts += 1
 
+    print(f"Beginning attempt {attempts}")
+
     # Query the database for a possible player to guess based on known context
     query = build_query(game_context)
     players = execute_query(engine, query)
     
-    # TODO: Implement a retry loop using this list of players if some of these players can't be found on the site
-    player = players[0]
+    # Try players one by one until a successful guess is submitted
+    guess_succeeded = False
+    while not guess_succeeded and players:
+        player = players.pop(0)
+        print(f"Trying player: {player}")
+        guess_succeeded = guesser.execute_guess(player.full_name)
 
-    print(f"Attempt {attempts}: {player}")
+    if not guess_succeeded:
+        raise Exception('Failed to submit a valid guess in the UI')
 
-    # Make the guess and scrape the feedback
-    guesser.execute_guess(player.full_name)
+    # Allow page to load for a sec and then scrape the feedback
     sleep(1)
     guess_feedback = guesser.get_most_recent_guess_feedback()
 

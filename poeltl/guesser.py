@@ -29,6 +29,14 @@ class Guesser:
         input_element = self.driver.find_element(By.XPATH, "//input[@type='text']")
         input_element.send_keys(player_name)
         input_element.send_keys(Keys.RETURN)
+        
+        # If the value is still present after sending ENTER the player was not found
+        if input_element.get_attribute('value'):
+            print(f"Player not found in the UI: {player_name}")
+            input_element.clear()
+            return False
+
+        return True
 
     def get_most_recent_guess_feedback(self) -> GuessFeedback:
 
