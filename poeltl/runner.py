@@ -1,4 +1,5 @@
-from curses import echo
+from time import sleep
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 
@@ -10,7 +11,12 @@ from .query import build_query
 
 guesser = Guesser()
 guesser.navigate_to_poeltl_site()
-guesser.execute_guess('Zach Collins')
+guesser.execute_guess('Stanley Johnson')
+sleep(1)
+guess_feedback = guesser.get_most_recent_guess_feedback()
+
+
+print(guess_feedback)
 
 
 # 1. Get a random player from the database and guess their name

@@ -13,16 +13,17 @@ class AttributeStatus(Enum):
 
 @dataclass
 class AttributeFeedback:
-    value: AttributeValue
-    status: AttributeStatus
+    value: AttributeValue = None
+    status: AttributeStatus = None
 
 
 @dataclass
 class GuessFeedback:
-    team_code_feedback: AttributeFeedback
-    conference_name_feedback: AttributeFeedback
-    division_abbreviation_feedback:  AttributeFeedback
-    player_position_feedback: AttributeFeedback
-    player_height_inches_feedback: AttributeFeedback
-    player_age_feedback: AttributeFeedback
-    player_jersey_number_feedback: AttributeFeedback
+    player_name_feedback: AttributeFeedback = None
+    team_code_feedback: AttributeFeedback = None
+    conference_name_feedback: AttributeFeedback = None
+    division_abbreviation_feedback:  AttributeFeedback = None
+    player_position_feedback: AttributeFeedback = None
+    player_height_inches_feedback: AttributeFeedback = None
+    player_age_feedback: AttributeFeedback = None
+    player_jersey_number_feedback: AttributeFeedback = None
