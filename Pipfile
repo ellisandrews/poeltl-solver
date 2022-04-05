@@ -8,9 +8,9 @@ requests = "*"
 sqlalchemy = "*"
 psycopg2-binary = "*"
 selenium = "*"
-poeltl = {editable = true, path = "."}
 
 [dev-packages]
+poeltl = {editable = true, path = "."}
 
 [requires]
 python_version = "3.9"

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ef59b85b1b252bc7a0a7dca1e022c4aede2fe0aae3f41904db539b59103a55cb"
+            "sha256": "0a6ea032ea9f94ab5e186d28ea2b11ff299daae89e9395c67a829852afe49463"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -212,10 +212,6 @@
             "markers": "python_version >= '3.6'",
             "version": "==1.1.0"
         },
-        "poeltl": {
-            "editable": true,
-            "path": "."
-        },
         "psycopg2-binary": {
             "hashes": [
                 "sha256:01310cf4cf26db9aea5158c217caa92d291f0500051a6469ac52166e1a16f5b7",
@@ -409,5 +405,10 @@
             "version": "==1.1.0"
         }
     },
-    "develop": {}
+    "develop": {
+        "poeltl": {
+            "editable": true,
+            "path": "."
+        }
+    }
 }
