@@ -1,5 +1,5 @@
-from .context import BinaryAttributeContext, GameContext, VariableCloseAttributeContext, VariableAttributeContext
-from .feedback import AttributeFeedback, AttributeStatus, GuessFeedback
+from poeltl.guess.context import BinaryAttributeContext, GameContext, VariableCloseAttributeContext, VariableAttributeContext
+from poeltl.guess.feedback import AttributeFeedback, AttributeStatus, GuessFeedback
 
 
 def map_feedback_to_context(guess_feedback: GuessFeedback, game_context: GameContext) -> GameContext:

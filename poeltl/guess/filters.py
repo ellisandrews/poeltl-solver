@@ -1,13 +1,13 @@
 from sqlalchemy import and_, Column
 
-from .context import (
+from poeltl.guess.context import (
     BinaryAttributeContext,
     IntegerAttributeContext,
     PositionAttributeContext,
     VariableAttributeContext,
     VariableCloseAttributeContext
 )
-from .value import AttributeValue, Direction, IntegerAttributeValue
+from poeltl.guess.value import AttributeValue, Direction, IntegerAttributeValue
 
 
 # TODO: Empirically test that this mapping of position feedback --> possible correct position is correct

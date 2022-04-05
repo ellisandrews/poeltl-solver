@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 
-from .value import AttributeValue, IntegerAttributeValue
+from poeltl.guess.value import AttributeValue, IntegerAttributeValue
 
 
 @dataclass

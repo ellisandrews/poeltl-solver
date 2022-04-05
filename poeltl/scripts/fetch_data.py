@@ -4,7 +4,7 @@ from time import sleep
 
 import requests
 
-from .common import CONFERENCES, RAW_DATA_DIRECTORY, slugify
+from poeltl.scripts.common import CONFERENCES, RAW_DATA_DIRECTORY, slugify
 
 
 def get_rapidapi_key():

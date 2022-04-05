@@ -1,10 +1,10 @@
 from datetime import date
 
 from sqlalchemy import Column, Date, ForeignKey, Integer, String
-from sqlalchemy.orm import relationship
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.orm import relationship
 
-from .base import Base
+from poeltl.db.models.base import Base
 
 
 class Player(Base):

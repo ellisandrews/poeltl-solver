@@ -5,8 +5,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from .feedback import AttributeFeedback, AttributeStatus, GuessFeedback
-from .value import AttributeValue, Direction, IntegerAttributeValue
+from poeltl.guess.feedback import AttributeFeedback, AttributeStatus, GuessFeedback
+from poeltl.guess.value import AttributeValue, Direction, IntegerAttributeValue
 
 
 class Guesser:

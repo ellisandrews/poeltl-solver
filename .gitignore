@@ -133,3 +133,6 @@ dmypy.json
 
 # macOS stuff
 .DS_Store
+
+# Dev environment stuff
+poeltl.egg-info

@@ -2,11 +2,11 @@ from time import sleep
 
 from sqlalchemy import create_engine
 
-from ..guess.context import GameContext
-from ..guess.feedback import AttributeStatus
-from ..guess.guesser import Guesser
-from ..guess.mapping import map_feedback_to_context
-from ..guess.query_manager import QueryManager
+from poeltl.guess.context import GameContext
+from poeltl.guess.feedback import AttributeStatus
+from poeltl.guess.guesser import Guesser
+from poeltl.guess.mapping import map_feedback_to_context
+from poeltl.guess.query_manager import QueryManager
 
 
 # Connect to the database

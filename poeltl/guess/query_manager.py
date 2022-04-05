@@ -4,14 +4,9 @@ from sqlalchemy.engine import Engine
 from sqlalchemy.orm import Session
 from sqlalchemy.sql.expression import Select
 
-from ..db.models import Conference, Division, Player, Team
-
-from .context import GameContext
-from .filters import (
-    binary_column_filter,
-    variable_close_column_filter,
-    variable_column_filter
-)
+from poeltl.db.models import Conference, Division, Player, Team
+from poeltl.guess.context import GameContext
+from poeltl.guess.filters import binary_column_filter, variable_close_column_filter, variable_column_filter
 
 
 class QueryManager:

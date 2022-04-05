@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
-from .base import Base
+from poeltl.db.models.base import Base
 
 
 class Conference(Base):

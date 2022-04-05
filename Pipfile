@@ -8,6 +8,7 @@ requests = "*"
 sqlalchemy = "*"
 psycopg2-binary = "*"
 selenium = "*"
+poeltl = {editable = true, path = "."}
 
 [dev-packages]
 

@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from enum import auto, Enum, unique
 
-from .value import AttributeValue
+from poeltl.guess.value import AttributeValue
 
 
 @unique
