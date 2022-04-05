@@ -1,45 +1,50 @@
+from operator import attrgetter
 from time import sleep
 
 from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
+
+from poeltl.guess.feedback import AttributeStatus
 
 from .guess.context import GameContext
 from .guess.mapping import map_feedback_to_context
 from .guesser import Guesser
-from .query import build_query
+from .query import build_query, execute_query
 
 
+# Connect to the database
+engine = create_engine('postgresql://postgres@localhost/poeltl', echo=True)
+
+# Instantiate long-lived objects
 guesser = Guesser()
+game_context = GameContext()
+
+# Launch a web browser and navigate to the game site
 guesser.navigate_to_poeltl_site()
-guesser.execute_guess('Stanley Johnson')
-sleep(1)
-guess_feedback = guesser.get_most_recent_guess_feedback()
 
+# Execute main game loop until the game is solved
+solved = False
+attempts = 0
 
-print(guess_feedback)
+while not solved:
 
+    # Increment the attempts counter
+    attempts += 1
 
-# 1. Get a random player from the database and guess their name
-# 2. Execute the guess and get feedback for each attribute on the guess
-# 3. Translate feedback to context
-# 4. Build a query for next player guess from the updated game context
+    # Query the database for a possible player to guess based on known context
+    query = build_query(game_context)
+    players = execute_query(engine, query)
+    
+    # TODO: Implement a retry loop using this list of players if some of these players can't be found on the site
+    player = players[0]
 
-# # Example with a couple of guesses
+    # Make the guess and scrape the feedback
+    guesser.execute_guess(player.full_name)
+    sleep(1)
+    guess_feedback = guesser.get_most_recent_guess_feedback()
 
-# game_context = GameContext()
-
-# guess_feedback = guesser.execute_guess('Zach Collins')
-# game_context = map_feedback_to_context(guess_feedback, game_context)
-
-# guess_feedback = guesser.execute_guess('Juancho Hernangomez')
-# game_context = map_feedback_to_context(guess_feedback, game_context)
-
-# # Query based on a couple of guesses
-# player_query = build_query(game_context)
-# engine = create_engine('postgresql://postgres@localhost/poeltl', echo=True)
-# with Session(engine) as session:    
-#     # Using the normal session.execute(query) returns each player as a single item in a row.
-#     # The sqlalchemy documentation recommends using session.scalars() to avoid calling row[0] to get each player object
-#     players = session.scalars(player_query).all()
-#     for player in players:
-#         print(player)
+    # Check to see if we've solved the puzzle, or update the context for the next guess based on the feedback
+    if guess_feedback.player_name_feedback.status is AttributeStatus.CORRECT:
+        solved = True
+        print(f"SOLVED in {attempts} attempts! Correct answer: {guess_feedback.player_name_feedback.value}")
+    else:
+        game_context = map_feedback_to_context(guess_feedback, game_context)

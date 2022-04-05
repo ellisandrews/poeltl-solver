@@ -23,6 +23,10 @@ class Player(Base):
     team = relationship('Team', back_populates='players')
 
     @hybrid_property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+    @hybrid_property
     def age(self):
         if self.birth_date:
             today = date.today()

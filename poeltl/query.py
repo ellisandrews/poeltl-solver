@@ -1,4 +1,8 @@
 from sqlalchemy import func, select
+from sqlalchemy.engine import Engine
+from sqlalchemy.orm import Session
+from sqlalchemy.sql.expression import Select
+
 
 from .db.models import Conference, Division, Player, Team
 from .filters import (
@@ -9,7 +13,7 @@ from .filters import (
 from .guess.context import GameContext
 
 
-def build_query(game_context: GameContext):
+def build_query(game_context: GameContext) -> Select:
     return (
         select(Player)
         .join(Player.team)
@@ -45,4 +49,12 @@ def build_query(game_context: GameContext):
                 game_context.player_jersey_number_context
             )
         )
+        .order_by(func.random())
     )
+
+
+def execute_query(engine: Engine, query: Select):
+    # Using the normal session.execute(query) returns each Player as a single item in a row.
+    # The sqlalchemy documentation recommends using session.scalars() to avoid calling row[0] to get each Player object
+    with Session(engine) as session:    
+        return session.scalars(query).all()
