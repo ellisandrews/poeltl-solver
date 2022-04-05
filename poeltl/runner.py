@@ -2,9 +2,8 @@ from time import sleep
 
 from sqlalchemy import create_engine
 
-from poeltl.guess.feedback import AttributeStatus
-
 from .guess.context import GameContext
+from .guess.feedback import AttributeStatus
 from .guess.mapping import map_feedback_to_context
 from .guesser import Guesser
 from .query import build_query, execute_query
