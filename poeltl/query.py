@@ -13,6 +13,8 @@ from .filters import (
 from .guess.context import GameContext
 
 
+# TODO: Build implied incorrect values (by proximity to a known incorrect and not close answer) and factor into query
+
 def build_query(game_context: GameContext) -> Select:
     return (
         select(Player)

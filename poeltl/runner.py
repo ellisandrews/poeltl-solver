@@ -12,7 +12,7 @@ from .query import build_query, execute_query
 
 
 # Connect to the database
-engine = create_engine('postgresql://postgres@localhost/poeltl', echo=True)
+engine = create_engine('postgresql://postgres@localhost/poeltl')
 
 # Instantiate long-lived objects
 guesser = Guesser()
@@ -37,6 +37,8 @@ while not solved:
     # TODO: Implement a retry loop using this list of players if some of these players can't be found on the site
     player = players[0]
 
+    print(f"Attempt {attempts}: {player}")
+
     # Make the guess and scrape the feedback
     guesser.execute_guess(player.full_name)
     sleep(1)
@@ -45,6 +47,6 @@ while not solved:
     # Check to see if we've solved the puzzle, or update the context for the next guess based on the feedback
     if guess_feedback.player_name_feedback.status is AttributeStatus.CORRECT:
         solved = True
-        print(f"SOLVED in {attempts} attempts! Correct answer: {guess_feedback.player_name_feedback.value}")
+        print(f"SOLVED in {attempts} attempts! Correct answer: {player.full_name}")
     else:
         game_context = map_feedback_to_context(guess_feedback, game_context)

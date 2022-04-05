@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -31,7 +32,7 @@ class Guesser:
 
     def get_most_recent_guess_feedback(self) -> GuessFeedback:
 
-        table_rows = self.driver.find_elements(By.XPATH, "//div[@class='game-table__body']/div[@class='game-table__row']")
+        table_rows = self.driver.find_elements(By.XPATH, "//div[@class='game-table__body']/div[contains(@class, 'game-table__row')]")
 
         if len(table_rows) == 0:
             raise ValueError('No player guess table rows found')
@@ -63,10 +64,15 @@ class Guesser:
             if not value:
                 raise ValueError(f"No cell value found for table column: {column}") 
 
-            # Build the correct AttributeValue
+            # Build the correct AttributeValue object
             if column in ('height', 'age', 'number'):
-                raw_direction = cell.find_element(By.XPATH, "div/div[contains(@class, 'dir')]").text
-                
+
+                # Correct guesses will not have a direction
+                try:
+                    raw_direction = cell.find_element(By.XPATH, "div/div[contains(@class, 'dir')]").text
+                except NoSuchElementException:
+                    raw_direction = None
+
                 direction = None
                 if raw_direction == '↓':
                     direction = Direction.HIGH
