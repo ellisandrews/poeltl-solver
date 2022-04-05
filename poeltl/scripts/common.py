@@ -1,4 +1,3 @@
-
 CONFERENCES = ('East', 'West')
 
 RAW_DATA_DIRECTORY = 'poeltl/db/raw_data'

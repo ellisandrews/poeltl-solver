@@ -22,18 +22,16 @@ if __name__ == '__main__':
     # Launch a web browser and navigate to the game site
     guesser.navigate_to_poeltl_site()
 
-    # Execute main game loop until the game is solved
+    # Execute main game loop until the game is solved or out of attempts
     solved = False
     attempts = 0
 
-    while not solved:
+    while not solved and attempts < 8:
 
-        # Increment the attempts counter
         attempts += 1
-
         print(f"Beginning attempt {attempts}")
 
-        # Query the database for a possible player to guess based on known context
+        # Query the database for possible players to guess based on known context
         query = query_manager.build_query(game_context)
         players = query_manager.execute_query(query)
         
@@ -47,11 +45,11 @@ if __name__ == '__main__':
         if not guess_succeeded:
             raise Exception('Failed to submit a valid guess in the UI')
 
-        # Allow page to load for a sec and then scrape the feedback
+        # Allow page to load for a bit and then scrape the feedback
         sleep(1)
         guess_feedback = guesser.get_most_recent_guess_feedback()
 
-        # Check to see if we've solved the puzzle, or update the context for the next guess based on the feedback
+        # Check to see if the puzzle is solved or update the context for the next guess based on the feedback
         if guess_feedback.player_name_feedback.status is AttributeStatus.CORRECT:
             solved = True
             print(f"SOLVED in {attempts} attempts! Correct answer: {player.full_name}")
