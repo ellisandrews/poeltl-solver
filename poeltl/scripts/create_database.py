@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 
 from .common import CONFERENCES, RAW_DATA_DIRECTORY, slugify
-from .db.models import Base, Conference, Division, Player, Team
+from ..db.models import Base, Conference, Division, Player, Team
 
 
 DIVISION_ABBREVIATIONS = {

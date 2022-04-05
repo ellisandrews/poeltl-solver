@@ -2,19 +2,20 @@ from time import sleep
 
 from sqlalchemy import create_engine
 
-from .guess.context import GameContext
-from .guess.feedback import AttributeStatus
-from .guess.mapping import map_feedback_to_context
-from .guesser import Guesser
-from .query import build_query, execute_query
+from ..guess.context import GameContext
+from ..guess.feedback import AttributeStatus
+from ..guess.guesser import Guesser
+from ..guess.mapping import map_feedback_to_context
+from ..guess.query_manager import QueryManager
 
 
 # Connect to the database
 engine = create_engine('postgresql://postgres@localhost/poeltl')
 
 # Instantiate long-lived objects
-guesser = Guesser()
+query_manager = QueryManager(engine)
 game_context = GameContext()
+guesser = Guesser()
 
 # Launch a web browser and navigate to the game site
 guesser.navigate_to_poeltl_site()
@@ -31,8 +32,8 @@ while not solved:
     print(f"Beginning attempt {attempts}")
 
     # Query the database for a possible player to guess based on known context
-    query = build_query(game_context)
-    players = execute_query(engine, query)
+    query = query_manager.build_query(game_context)
+    players = query_manager.execute_query(query)
     
     # Try players one by one until a successful guess is submitted
     guess_succeeded = False
