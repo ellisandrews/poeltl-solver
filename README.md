@@ -28,7 +28,15 @@ You can install Pipenv with `pip`:
 $ pip install --user pipenv
 ```
 
-### 3. Install ChromeDriver
+### 3. Install Dependencies
+
+Install dependencies with Pipenv:
+
+```shell
+$ pipenv install --dev
+```
+
+### 4. Install ChromeDriver
 
 This project uses [Selenium](https://www.selenium.dev/documentation/) for web browser interactions.
 
@@ -60,7 +68,7 @@ You can tell macOS to trust the binary by running the following command:
 $ xattr -d com.apple.quarantine /usr/local/bin/chromedriver
 ```
 
-### 4. Setup Database
+### 5. Setup Database
 
 This project is backed by a PostgreSQL database. Ensure postgres is running locally on the default port 5432.
 
@@ -79,7 +87,7 @@ Then run the following script to create the database schema and load player data
 $ pipenv run python poeltl/scripts/create_database.py
 ```
 
-### 5. Verify
+### 6. Verify
 
 You can verify your local dev environment is working by simply executing the main `solve.py` script:
 
