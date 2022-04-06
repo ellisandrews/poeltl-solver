@@ -25,7 +25,6 @@ class Guesser:
 
     def execute_guess(self, player_name: str):
         # Enter the player name guess into the text field and hit enter
-        # TODO: Add some retry logic / validation if the player guess isn't found
         input_element = self.driver.find_element(By.XPATH, "//input[@type='text']")
         input_element.send_keys(player_name)
         input_element.send_keys(Keys.RETURN)
