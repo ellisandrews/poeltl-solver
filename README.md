@@ -1,7 +1,7 @@
 # poeltl-solver
 
 <p align="center">
-  <img src="poeltl_home.png" width="500">
+  ![](poeltl.gif)
 </p>
 
 Automated solver for the Poeltl NBA player guessing game: [https://poeltl.dunk.town/](https://poeltl.dunk.town/)
