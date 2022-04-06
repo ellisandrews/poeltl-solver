@@ -1,6 +1,6 @@
 # poeltl-solver
 
-![](poeltl.gif)
+![](demo.gif)
 
 Automated solver for the Poeltl NBA player guessing game: [https://poeltl.dunk.town/](https://poeltl.dunk.town/)
 
