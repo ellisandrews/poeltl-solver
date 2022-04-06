@@ -10,13 +10,13 @@ from poeltl.guess.context import (
 from poeltl.guess.value import AttributeValue, Direction, IntegerAttributeValue
 
 
-# TODO: Empirically test that this mapping of position feedback --> possible correct position is correct
+# TODO: Empirically test that this mapping of close position feedback --> possible correct position is correct
 _CLOSE_POSITIONS_MAP = {
     'G':   {'G-F', 'F-G'},
     'G-F': {'G', 'F-G', 'F'},
     'F-G': {'G', 'G-F', 'F'},
     'F':   {'F-G', 'F-C'},
-    'F-C': {'F', 'C-F'},
+    'F-C': {'F', 'C-F', 'C'},
     'C-F': {'F', 'F-C', 'C'},
     'C':   {'F-C', 'C-F'}
 }
@@ -49,25 +49,25 @@ def variable_close_column_filter(column: Column, context: VariableCloseAttribute
         return _correct_value_filter(column, context.correct_value)
     
     if isinstance(context, PositionAttributeContext):
-        _incorrect_filter = _incorrect_values_filter
-        _close_filter = _close_position_values_filter
+        incorrect_filter = _incorrect_position_values_filter
+        close_filter = _close_position_values_filter
     elif isinstance(context, IntegerAttributeContext):
-        _incorrect_filter = _integer_values_filter
-        _close_filter = _close_integer_values_filter
+        incorrect_filter = _incorrect_integer_values_filter
+        close_filter = _close_integer_values_filter
     else:
         raise ValueError(f"Unsupported context type: {type(context).__name__}")
 
     if context.incorrect_values and context.close_values:
         return and_(
-            _incorrect_filter(column, context.incorrect_values),
-            _close_filter(column, context.close_values)
+            incorrect_filter(column, context.incorrect_values),
+            close_filter(column, context.close_values)
         )
 
     if context.incorrect_values:
-        return _incorrect_filter(column, context.incorrect_values)
+        return incorrect_filter(column, context.incorrect_values)
 
     if context.close_values:
-        return _close_filter(column, context.close_values)
+        return close_filter(column, context.close_values)
 
     return True
 
@@ -82,6 +82,18 @@ def _incorrect_value_filter(column: Column, incorrect_value: AttributeValue):
 
 def _incorrect_values_filter(column: Column, incorrect_values: list[AttributeValue]):
     return column.notin_([incorrect_value.value for incorrect_value in incorrect_values])
+
+
+def _incorrect_position_values_filter(column: Column, incorrect_values: list[AttributeValue]):
+    incorrect_positions = set()
+    for incorrect_value in incorrect_values:
+        incorrect_positions.add(incorrect_value.value)
+        # If the observed INCORRECT value is in the possible values set for a given close_value key,
+        # then the close_value key can be ruled out as INCORRECT because it otherwise would have registered as CLOSE
+        for close_value, possible_values in _CLOSE_POSITIONS_MAP.items():
+            if incorrect_value.value in possible_values:
+                incorrect_positions.add(close_value)
+    return column.notin_(list(incorrect_positions))
 
 
 def _close_position_values_filter(column: Column, close_values: list[AttributeValue]):
@@ -103,7 +115,7 @@ def _close_integer_values_filter(column: Column, close_values: list[IntegerAttri
     return column.in_(list(possible_values)) 
 
 
-def _integer_values_filter(column: Column, close_values: list[IntegerAttributeValue]):
+def _incorrect_integer_values_filter(column: Column, close_values: list[IntegerAttributeValue]):
     return _get_min_and_or_max_integer_filter(column, *_get_min_and_max_integer_values(close_values))
 
 
@@ -133,10 +145,10 @@ def _get_min_and_max_integer_values(integer_attribute_values: list[IntegerAttrib
 
     max_low_value = None
     if low_values:
-        max_low_value = max(integer_attribute_value.value for integer_attribute_value in low_values)
-    
+        max_low_value = max(integer_attribute_value.value for integer_attribute_value in low_values) + _CLOSE_INTEGER_DISTANCE
+
     min_high_value = None
     if high_values:
-        min_high_value = min(integer_attribute_value.value for integer_attribute_value in high_values)
+        min_high_value = min(integer_attribute_value.value for integer_attribute_value in high_values) - _CLOSE_INTEGER_DISTANCE
 
     return max_low_value, min_high_value
